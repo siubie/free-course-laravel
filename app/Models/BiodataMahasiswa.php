@@ -9,4 +9,12 @@ class BiodataMahasiswa extends Model
 {
     /** @use HasFactory<\Database\Factories\BiodataMahasiswaFactory> */
     use HasFactory;
+    //add fillables
+    protected $fillable = [
+        'nim',
+        'nama',
+        'alamat',
+        'jurusan',
+        'nomor_telepon',
+    ];
 }
