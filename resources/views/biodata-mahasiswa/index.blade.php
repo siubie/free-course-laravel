@@ -43,7 +43,16 @@
                     <td>{{ $mhs->nama }}</td>
                     <td>{{ $mhs->alamat }}</td>
                     <td>{{ $mhs->jurusan }}</td>
-                    <td> <a href="{{ route('biodata-mahasiswa.show', $mhs->id) }}">View</a>
+                    <td>
+                        <a href="{{ route('biodata-mahasiswa.show', $mhs->id) }}">View</a>
+                        <a href="{{ route('biodata-mahasiswa.edit', $mhs->id) }}">Edit</a>
+                        {{-- add delete form --}}
+                        <form action="{{ route('biodata-mahasiswa.destroy', $mhs->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                        </form>
                     </td>
 
                 </tr>

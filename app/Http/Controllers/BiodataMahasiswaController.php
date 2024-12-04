@@ -103,7 +103,8 @@ class BiodataMahasiswaController extends Controller
      */
     public function edit(BiodataMahasiswa $biodataMahasiswa)
     {
-        //
+        //load view biodata-mahasiswa.edit
+        return view('biodata-mahasiswa.edit', compact('biodataMahasiswa'));
     }
 
     /**
@@ -112,6 +113,11 @@ class BiodataMahasiswaController extends Controller
     public function update(UpdateBiodataMahasiswaRequest $request, BiodataMahasiswa $biodataMahasiswa)
     {
         //
+        // dump($request->validated());
+        //update data to database
+        $biodataMahasiswa->update($request->validated());
+        //redirect to biodata-mahasiswa.indexa
+        return redirect()->route('biodata-mahasiswa.index');
     }
 
     /**
@@ -119,6 +125,9 @@ class BiodataMahasiswaController extends Controller
      */
     public function destroy(BiodataMahasiswa $biodataMahasiswa)
     {
-        //
+        //delete data
+        $biodataMahasiswa->delete();
+        //redirect  to biodata-mahasiswa.index
+        return redirect()->route('biodata-mahasiswa.index');
     }
 }
