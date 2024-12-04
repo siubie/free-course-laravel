@@ -14,8 +14,10 @@ class BiodataMahasiswaController extends Controller
      */
     public function index()
     {
+        //challenge :
+        //1. buat ordering by nama (asc/desc) dan sort nya itu tetep ada ketika pagination dijalankan
+
         //dump the request
-        dump(request()->search);
         // //ambil data biodata mahasiswa dari database dengan eloquent orm
         // $biodata_mahasiswa = BiodataMahasiswa::all();
         //get data from database with pagination
@@ -58,7 +60,7 @@ class BiodataMahasiswaController extends Controller
         // ],);
         //ini lebih enak
         return view(
-            'biodata_mahasiswa',
+            'biodata-mahasiswa.index',
             compact(
                 'biodata_mahasiswa',
             )
@@ -71,6 +73,7 @@ class BiodataMahasiswaController extends Controller
     public function create()
     {
         //
+        return view('biodata-mahasiswa.create');
     }
 
     /**
@@ -78,7 +81,12 @@ class BiodataMahasiswaController extends Controller
      */
     public function store(StoreBiodataMahasiswaRequest $request)
     {
-        //
+        //masuk sini kalo pake form request udah bersih udah validated
+        // gua usah di validai lagi jangan buang buang energi
+        // store data to database
+        BiodataMahasiswa::create($request->validated());
+        //redirect to biodata-mahasiswa.index
+        return redirect()->route('biodata-mahasiswa.index');
     }
 
     /**
@@ -86,7 +94,8 @@ class BiodataMahasiswaController extends Controller
      */
     public function show(BiodataMahasiswa $biodataMahasiswa)
     {
-        //
+        //load view biodata-mahasiswa.show
+        return view('biodata-mahasiswa.show', compact('biodataMahasiswa'));
     }
 
     /**

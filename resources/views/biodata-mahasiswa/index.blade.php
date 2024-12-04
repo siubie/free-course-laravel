@@ -17,6 +17,11 @@
         <input type="text" name="search" placeholder="Cari Mahasiswa" value="{{ old('search') }}">
         <button type="submit">Cari</button>
     </form>
+
+    <br>
+    {{-- add a button to redirect to create page --}}
+    <a href="{{ route('biodata-mahasiswa.create') }}">Tambah Mahasiswa</a>
+    <br>
     {{-- create table for bidata mahasiswa --}}
     <table border="1">
         <thead>
@@ -26,6 +31,7 @@
                 <th>Nama</th>
                 <th>Alamat</th>
                 <th>Jurusan</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +43,9 @@
                     <td>{{ $mhs->nama }}</td>
                     <td>{{ $mhs->alamat }}</td>
                     <td>{{ $mhs->jurusan }}</td>
+                    <td> <a href="{{ route('biodata-mahasiswa.show', $mhs->id) }}">View</a>
+                    </td>
+
                 </tr>
             @empty
                 <tr>
